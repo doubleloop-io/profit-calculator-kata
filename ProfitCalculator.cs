@@ -5,7 +5,7 @@ namespace ProfitCalculatorKata
 {
     public class ProfitCalculator
     {
-        static Dictionary<string, double> EXCHANGE_RATES = new Dictionary<string, double>
+        static readonly Dictionary<string, double> ExchangeRates = new Dictionary<string, double>
         {
             {"GBP", 1.0},
             {"USD", 1.6},
@@ -20,21 +20,21 @@ namespace ProfitCalculatorKata
         {
             this.localCurrency = localCurrency;
 
-            if (!EXCHANGE_RATES.ContainsKey(localCurrency))
+            if (!ExchangeRates.ContainsKey(localCurrency))
             {
                 throw new ArgumentException($"Invalid currency '{localCurrency}'");
             }
         }
 
-        public void add(int amount, string currency, bool incoming)
+        public void Add(int amount, string currency, bool incoming)
         {
             var realAmount = amount;
 
-            if (!EXCHANGE_RATES.ContainsKey(currency))
+            if (!ExchangeRates.ContainsKey(currency))
             {
                 throw new ArgumentException($"Invalid currency '{currency}''");
             }
-            var exchangeRate = EXCHANGE_RATES[currency] / EXCHANGE_RATES[localCurrency];
+            var exchangeRate = ExchangeRates[currency] / ExchangeRates[localCurrency];
             
             realAmount = (int) (realAmount / exchangeRate);
             
@@ -53,12 +53,12 @@ namespace ProfitCalculatorKata
             }
         }
 
-        public int calculateProfit()
+        public int CalculateProfit()
         {
-            return localAmount - calculateTax() + foreignAmount;
+            return localAmount - CalculateTax() + foreignAmount;
         }
 
-        public int calculateTax()
+        public int CalculateTax()
         {
             if (localAmount < 0)
             {
