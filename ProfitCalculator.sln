@@ -1,6 +1,6 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ProfitCalculator", "ProfitCalculator.csproj", "{9C0BD9C0-4126-4CE2-9EA8-EB7F69F334CD}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ProfitCalculatorKata", "ProfitCalculatorKata.csproj", "{9C0BD9C0-4126-4CE2-9EA8-EB7F69F334CD}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
