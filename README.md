@@ -9,7 +9,7 @@ From:
 
 **Refactoring steps**
 
-1. Introduce a Currency class or enum; Use it on ProfitCalculator.
+1. Introduce a Currency class or enum; Use it on ProfitCalculator. [DONE]
 2. Create an ExchageRates first class collection; Use it on ProfitCalculator.
 3. Create a Money class. Identify all amount operations used by ProfitCalculator and add them to it. 
 4. Change ProfitCalculator and its tests to use the Money class

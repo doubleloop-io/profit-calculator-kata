@@ -5,20 +5,20 @@ namespace ProfitCalculatorKata
 {
     public class ProfitCalculator
     {
-        static readonly Dictionary<string, double> ExchangeRates = new Dictionary<string, double>
+        static readonly Dictionary<Currency, double> ExchangeRates = new Dictionary<Currency, double>
         {
-            {"GBP", 1.0},
-            {"USD", 1.6},
-            {"EUR", 1.2}
+            {Currencies.GBP, 1.0},
+            {Currencies.USD, 1.6},
+            {Currencies.EUR, 1.2}
         };
 
-        string localCurrency;
         int localAmount = 0;
         int foreignAmount = 0;
+        readonly Currency localCurrency;
 
-        public ProfitCalculator(string localCurrency)
+        public ProfitCalculator(Currency currency)
         {
-            this.localCurrency = localCurrency;
+            localCurrency = currency;
 
             if (!ExchangeRates.ContainsKey(localCurrency))
             {
@@ -26,7 +26,7 @@ namespace ProfitCalculatorKata
             }
         }
 
-        public void Add(int amount, string currency, bool incoming)
+        public void Add(Int32 amount, Currency currency, Boolean incoming)
         {
             var realAmount = amount;
 
