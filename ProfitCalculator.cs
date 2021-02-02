@@ -28,6 +28,7 @@ namespace ProfitCalculatorKata
 
         public void Add(Int32 amount, Currency currency, Boolean incoming)
         {
+            var amountM = new Money(amount);
             var realAmount = amount;
 
             if (!ExchangeRates.ContainsKey(currency))
@@ -45,7 +46,8 @@ namespace ProfitCalculatorKata
 
             if (localCurrency == currency)
             {
-                localAmount += realAmount;
+                var xxx = amountM.Sum(new Money(localAmount));
+                localAmount = localAmount + realAmount;
             }
             else
             {
@@ -67,5 +69,18 @@ namespace ProfitCalculatorKata
 
             return (int) (localAmount * 0.2);
         }
+    }
+
+    public class Money
+    {
+        public Int32 Amount { get; }
+
+        public Money(in int amount)
+        {
+            Amount = amount;
+        }
+
+        public Money Sum(Money other) => 
+            new Money(other.Amount + Amount);
     }
 }
