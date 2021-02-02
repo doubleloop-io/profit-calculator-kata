@@ -35,10 +35,11 @@ namespace ProfitCalculatorKata
             {
                 throw new ArgumentException($"Invalid currency '{currency}''");
             }
+
             var exchangeRate = ExchangeRates[currency] / ExchangeRates[localCurrency];
-            
+
             realAmount = (int) (realAmount / exchangeRate);
-            
+
             if (!incoming)
             {
                 realAmount = -realAmount;
@@ -55,12 +56,19 @@ namespace ProfitCalculatorKata
             }
         }
 
-        public int CalculateProfit()
+        public Money CalculateProfitM()
         {
-            return localAmount - CalculateTax() + foreignAmount;
+            return new Money(
+                localAmount - CalculateTaxM().Amount + foreignAmount
+            );
         }
 
-        public int CalculateTax()
+        public Money CalculateTaxM()
+        {
+            return new Money(Compute());
+        }
+
+        int Compute()
         {
             if (localAmount < 0)
             {
@@ -69,18 +77,5 @@ namespace ProfitCalculatorKata
 
             return (int) (localAmount * 0.2);
         }
-    }
-
-    public class Money
-    {
-        public Int32 Amount { get; }
-
-        public Money(in int amount)
-        {
-            Amount = amount;
-        }
-
-        public Money Sum(Money other) => 
-            new Money(other.Amount + Amount);
     }
 }
